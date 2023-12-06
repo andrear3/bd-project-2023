@@ -1,0 +1,263 @@
+
+
+\chapter{Dizionari}
+
+\section{Dizionario delle Classi}
+
+\vspace{2em} 
+
+%\setlength{\arrayrulewidth}{0.5mm}
+%\setlength{\tabcolsep}{18pt}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{ |p{6cm}|p{6cm}|  }
+\hline
+\multicolumn{2}{|c|}{\textbf{PUBLIC COLLECTION}} \\
+\hline
+\textbf{DESCRIZIONE: } \break Collezione di foto condivise dagli utenti. 
+& \textbf{ATTRIBUTI:} \break \textbf{Collection\textunderscore Name(String)}: Nome identificativo univoco della galleria pubblica.\\
+\hline
+\end{tabular}
+
+\vspace{2em} 
+
+\begin{tabular}{ |p{6cm}|p{6cm}|  }
+\hline
+\multicolumn{2}{|c|}{\textbf{VIDEO}} \\
+\hline
+\textbf{DESCRIZIONE: } \break Sequenza di foto scelte dall'utente che vanno a formare un video.
+& \textbf{ATTRIBUTI:} \break \textbf{Video\textunderscore Code(Int)}: Codice identificativo del video.
+\break \textbf{Video\textunderscore Lenght:(String)}: Lunghezza del video (Formato [hh]-[mm]-[ss]).
+\break \textbf{Video\textunderscore Desc(String)}: Breve descrizione del video.
+\break \textbf{Video\textunderscore Title(String)}: Titolo dato dall'utente al video. \\
+\hline
+\end{tabular}
+
+\vspace{2em} 
+
+\begin{tabular}{ |p{6cm}|p{6cm}|  }
+\hline
+\multicolumn{2}{|c|}{\textbf{PHOTO}} \\
+\hline
+\textbf{DESCRIZIONE: } \break Fotografia scattata e caricata dall'utente. & \textbf{ATTRIBUTI:} 
+\break \textbf{Device(String)}: Dispositivo utilizzato per lo scatto della fotografia. \break
+\break \textbf{Photo\textunderscore Code(Int)}: Codice Identificativo dello scatto. \break
+\break \textbf{Scope(Info\textunderscore Scope)}: Stato della fotografia (public,private o eliminated) \break
+\break \textbf{Photo\textunderscore Date(Data)}: Data dello scatto della fotografia (Formato DD/MM/YYYY). \break \\
+\hline
+\end{tabular}
+
+\vspace{2em} 
+
+\begin{tabular}{ |p{6cm}|p{6cm}|  }
+\hline
+\multicolumn{2}{|c|}{\textbf{LOCATION}} \\
+\hline
+\textbf{DESCRIZIONE: } \break Luogo in cui è stata scattata la fotografia & \textbf{ATTRIBUTI:} 
+\break \textbf{Location\textunderscore  Name(String)}: Nome Identificativo della località di scatto della fotografia. \break
+\break \textbf{X\textunderscore Coordinates(Float)}: Coordinate di Latitudine geografica del luogo dello scatto.\break
+\break \textbf{Y\textunderscore Coordinates(Float)}: Coordinate di Longitudine geografica del luogo dello scatto.\break
+\break \textbf{Photo\textunderscore Count(Int)}:Counter del luogo che viene utilizzato per la classifica dei luoghi più immortalati. \break \\
+\hline
+\end{tabular}
+
+\vspace{2em}
+
+
+\begin{tabular}{ |p{6cm}|p{6cm}|  }
+\hline
+\multicolumn{2}{|c|}{\textbf{TAG}} \\
+\hline
+\textbf{DESCRIZIONE: } \break Tipo di soggetto che può avere una fotografia. & \textbf{ATTRIBUTI:} 
+\break \textbf{Tag\textunderscore Name(String)}:Nome identificativo del soggetto della fotografia. \break \\
+\hline
+\end{tabular}
+
+\vspace{2em}
+
+\begin{tabular}{ |p{6cm}|p{6cm}|  }
+\hline
+\multicolumn{2}{|c|}{\textbf{UTENTE}} \\
+\hline
+\textbf{DESCRIZIONE: } \break Raccolta delle informazioni dell'utente
+& \textbf{ATTRIBUTI:} 
+\break \textbf{Nickname(String)}:Nome identificativo scelto dell'utente. \break
+\break \textbf{Name(String)}:Nome dell'utente.\break
+\break \textbf{Surname(String)}:Cognome dell'utente.\break
+\break \textbf{BirthDate(Date)}:Data di nascita dell'utente(Formato DD/MM/YYYY). \break 
+\break \textbf{Gender(String)}:Sesso dell'utente.\break \\
+\hline
+\end{tabular}
+
+\section{Dizionario delle Associazioni}
+\vspace{2em}
+
+\begin{tabular}{ |p{6cm}|p{6cm}|  }
+\hline
+\multicolumn{2}{|c|}{\textbf{user\textunderscore tag}} \\
+\hline
+\textbf{DESCRIZIONE: } \break Relazione tra le fotografie e gli utenti presenti nelle stesse. & \textbf{CLASSI:} 
+\break \textbf{User[0..*]}:Uno o più utenti presenti nella fotografia. \break
+\break \textbf{Photo[0..*]}:Una o più fotografie nelle quali sono presenti altri utenti.\break \\
+\hline
+\end{tabular}
+
+\vspace{2em}
+
+\begin{tabular}{ |p{6cm}|p{6cm}|  }
+\hline
+\multicolumn{2}{|c|}{\textbf{video\textunderscore made\textunderscore by}} \\
+\hline
+\textbf{DESCRIZIONE: } \break Relazione che definisce l'appertenza di un video ad un utente. & \textbf{CLASSI:} 
+\break \textbf{USER[1]}:Utente creatore del video.  \break
+\break \textbf{Video[0..*]}:Video creati dall'utente.\break \\
+\hline
+\end{tabular}
+
+\vspace{2em}
+
+\begin{tabular}{ |p{6cm}|p{6cm}|  }
+\hline
+\multicolumn{2}{|c|}{\textbf{is\textunderscore in\textunderscore video}} \\
+\hline
+\textbf{DESCRIZIONE: } \break Relazione che definisce la raccolta di foto che vanno a comporre il video. & \textbf{CLASSI:} 
+\break \textbf{Photo[1..*]}:Raccolta di fotografie che vanno a comporre il video.  \break
+\break \textbf{Video[1]}:Sequenza di fotografie scelte dall'utente.\break \\
+\hline
+\end{tabular}
+
+\vspace{2em}
+
+\begin{tabular}{ |p{6cm}|p{6cm}|  }
+\hline
+\multicolumn{2}{|c|}{\textbf{photo\textunderscore tag}} \\
+\hline
+\textbf{DESCRIZIONE: } \break Relazione che definisce i soggetti presenti nella fotografia. & \textbf{CLASSI:} 
+\break \textbf{Photo[1]}:Fotografia in cui sono presenti i soggetti.  \break
+\break \textbf{Tag[0..*]}:Tag dei soggetti presenti nella fotografia.\break \\
+\hline
+\end{tabular}
+
+\vspace{2em}
+
+\begin{tabular}{ |p{6cm}|p{6cm}|  }
+\hline
+\multicolumn{2}{|c|}{\textbf{shared\textunderscore photo}} \\
+\hline
+\textbf{DESCRIZIONE: } \break Relazione che definisce quali fotografie sono presenti nella galleria pubblica. & \textbf{CLASSI:} 
+\break \textbf{Photo[0..*]}:Fotografie inserite nella galleria pubblica.  \break
+\break \textbf{Public\textunderscore Collection[0..*]}:Galleria pubblica in cui sono raccolte le fotografie condivise dagli utenti. \break \\
+\hline
+\end{tabular}
+
+\vspace{2em}
+
+\begin{tabular}{ |p{6cm}|p{6cm}|  }
+\hline
+\multicolumn{2}{|c|}{\textbf{photo\textunderscore made\textunderscore by}} \\
+\hline
+\textbf{DESCRIZIONE: } \break Relazione che definisce l'appartenenza di una o più fotografie ad un utente. & \textbf{CLASSI:} 
+\break \textbf{User[1]}:Utente autore della fotografia. \break
+\break \textbf{Photo[0..*]}:Una o più fotografie scattate dall'utente. \break \\
+\hline
+\end{tabular}
+
+\vspace{2em}
+
+\begin{tabular}{ |p{6cm}|p{6cm}|  }
+\hline
+\multicolumn{2}{|c|}{\textbf{photo\textunderscore taken\textunderscore in}} \\
+\hline
+\textbf{DESCRIZIONE: } \break Relazione che definisce la località in cui sono state scattate una o più fotografie. & \textbf{CLASSI:} 
+\break \textbf{Photo[1..*]}:Una o più foto scattate in una determinata località. \break
+\break \textbf{Location[1]}:Località in cui sonso state scattate una o più fotografie. \break \\
+\hline
+\end{tabular}
+
+\vspace{2em}
+
+\begin{tabular}{ |p{6cm}|p{6cm}|  }
+\hline
+\multicolumn{2}{|c|}{\textbf{partecipating\textunderscore users}} \\
+\hline
+\textbf{DESCRIZIONE: } \break Relazione che definisce gli utenti che partecipano ad una galleria pubblica & \textbf{ATTRIBUTI:}
+\break \textbf{Join\textunderscore Date(Date)}:Data in cui l'utente è entrato a far parte della galleria pubblica \break
+ \break \textbf{CLASSI:}  
+\break \textbf{User[1..*]}:Utenti che partecipano alla galleria pubblica \break
+\break \textbf{Public\textunderscore Collection[0..*]}:Galleria pubblica a cui gli utenti partecipano \break \\
+\hline
+\end{tabular}
+
+\vspace{2em}
+
+\pagebreak
+\section{Dizionario dei Vincoli}
+
+\vspace{3em}
+
+\begin{tabular}{ |p{12cm}|  }
+\hline
+\multicolumn{1}{|c|}{\textbf{Fullname }} \\
+\hline
+\textbf{DESCRIZIONE: } \break Vincolo di dominio che assicura l'uso di caratteri esclusivamente alfabetici durante l'inserimento di nome e cognome dell'utente. \\
+\hline
+\end{tabular}
+
+\vspace{3em}
+
+\begin{tabular}{ |p{12cm}|  }
+\hline
+\multicolumn{1}{|c|}{\textbf{Check\textunderscore Gender}} \\
+\hline
+\textbf{DESCRIZIONE: } \break Vincolo di check che assicura l'inserimento di gender 'M' o 'F' (rispettivamente maschio o femmina). \\
+\hline
+\end{tabular}
+
+\vspace{3em}
+
+\begin{tabular}{ |p{12cm}|  }
+\hline
+\multicolumn{1}{|c|}{\textbf{Delete\textunderscore Photo}} \\
+\hline
+\textbf{DESCRIZIONE: } \break Vincolo che assicura, dopo aver eliminato una foto, che tale rimanga comunque in una collezione pubblica andando a non mostrare l'utente che ha scattato tale foto. \\
+\hline
+\end{tabular}
+
+\vspace{3em}
+
+\begin{tabular}{ |p{12cm}|  }
+\hline
+\multicolumn{1}{|c|}{\textbf{Private\textunderscore Photo}} \\
+\hline
+\textbf{DESCRIZIONE: } \break Vincolo che assicura, a seguito di un inserimento/aggiornamento di una foto privata, che tale foto non appaia in collezioni pubbliche. \\
+\hline
+\end{tabular}
+
+\vspace{3em}
+
+\begin{tabular}{ |p{12cm}|  }
+\hline
+\multicolumn{1}{|c|}{\textbf{Public\textunderscore Photo}} \\
+\hline
+\textbf{DESCRIZIONE: } \break Vincolo che, forzando l'inserimento di una foto privata in una collezione pubblica, la fa diventare pubblica. \\
+\hline
+\end{tabular}
+
+\vspace{3em}
+
+\begin{tabular}{ |p{12cm}|  }
+\hline
+\multicolumn{1}{|c|}{\textbf{Add\textunderscore User\textunderscore Collection}} \\
+\hline
+\textbf{DESCRIZIONE: } \break Vincolo che aggiunge l'utente alla lista di partecipanti della collezione pubblica nel caso esso non ne faccia già parte. \\
+\hline
+\end{tabular}
+
+\vspace{3em}
+
+\begin{tabular}{ |p{12cm}|  }
+\hline
+\multicolumn{1}{|c|}{\textbf{Delete\textunderscore User}} \\
+\hline
+\textbf{DESCRIZIONE: } \break Vincolo che gestisce i dati a seguito di una eliminazione di un utente assicurandosi che tutti i suoi contenuti (come foto o video) siano eliminati fatta eccezione per le foto dove è taggato un altro utente. \\
+\hline
+\end{tabular}

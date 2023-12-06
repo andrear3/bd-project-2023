@@ -1,0 +1,164 @@
+\chapter{Modello Logico}
+
+
+\section{Schema Logico}
+\vspace{2em}
+
+\textbf{PHOTO}(\underline{Photo\textunderscore Code},Device,Scope,Photo\textunderscore Date)\\
+
+\bigskip
+
+\textbf{TAG}(\underline{Tag\textunderscore Name})\\
+
+\bigskip
+
+\textbf{USER}(\underline{Nickname},Name,Surname,BirthDate,Gender)\\
+
+\bigskip
+
+\textbf{LOCATION}(\underline{Location\textunderscore Name},X\textunderscore Coordinates,Y\textunderscore Coordinates,Photo\textunderscore Count)\\
+
+\bigskip
+
+\textbf{VIDEO}(\underline{Video\textunderscore Code},Video\textunderscore Lenght,Video\textunderscore Desc,Video\textunderscore Title)\\
+
+\bigskip
+
+\textbf{PUBLIC\textunderscore COLLECTION}(\underline{Collection\textunderscore Name })\\
+
+\bigskip
+
+\textbf{IS\textunderscore IN\textunderscore VIDEO}(\underline{Video\textunderscore Code,Photo\textunderscore Code})\\
+IS\textunderscore IN\textunderscore VIDEO.Video\textunderscore Code \leftarrow VIDEO.Video\textunderscore Code\\
+IS\textunderscore IN\textunderscore VIDEO.Photo\textunderscore Code \leftarrow PHOTO.Photo\textunderscore Code\\
+
+\bigskip
+
+\textbf{PARTECIPATING\textunderscore USERS}(\underline{Join\textunderscore Data, Collection\textunderscore Name, Nickname})\\
+PARTECIPATING\textunderscore USERS.Collection\textunderscore Name \leftarrow PUBLIC\textunderscore COLLECTION.Collection\textunderscore Name\\
+PARTECIPATING\textunderscore USERS.Nickname \leftarrow USER.Nickname\\
+
+\bigskip
+
+\textbf{VIDEO\textunderscore MADE\textunderscore BY}(\underline{Video\textunderscore Code,Nickname})\\
+VIDEO \textunderscore MADE\textunderscore BY.Video\textunderscore Code\leftarrow VIDEO.Video \textunderscore Code\\
+VIDEO\textunderscore MADE\textunderscore BY.Nickname \leftarrow USER.Nickname\\
+\bigskip
+\textbf{USER\textunderscore TAG}(\underline{Nickname,Photo\textunderscore Code})\\
+USER\textunderscore TAG.Nickname \leftarrow USER.Nickname\\
+USER\textunderscore TAG.Photo\textunderscore Code \leftarrow PHOTO.Photo\textunderscore Code\\
+\bigskip
+\pagebreak
+\textbf{PHOTO\textunderscore TAG}(\underline{Tag\textunderscore Name,Photo\textunderscore Code})\\
+PHOTO\textunderscore TAG.Tag\textunderscore Name \leftarrow TAG.Tag\textunderscore Name\\
+PHOTO\textunderscore TAG.Photo\textunderscore Code \leftarrow PHOTO.Photo\textunderscore Code\\
+
+\bigskip
+\textbf{PHOTO\textunderscore TAKEN\textunderscore IN}(\underline{Location\textunderscore Name,Photo\textunderscore Code})\\
+PHOTO\textunderscore TAKEN\textunderscore IN.Location\textunderscore Name \leftarrow LOCATION.Location\textunderscore Name \\
+PHOTO\textunderscore TAKEN\textunderscore IN.Photo\textunderscore Code \leftarrow PHOTO.Photo\textunderscore Code\\
+\bigskip
+\textbf{PHOTO\textunderscore MADE\textunderscore BY}(\underline{Nickname,Photo\textunderscore Code})\\
+PHOTO\textunderscore MADE\textunderscore BY.Nickname \leftarrow USER.Nickname \\
+PHOTO\textunderscore MADE\textunderscore BY.Photo\textunderscore Code \leftarrow PHOTO.Photo\textunderscore Code\\
+\bigskip
+\textbf{SHARED\textunderscore PHOTO}(\underline{Photo\textunderscore Code,Collection\textunderscore Name})\\
+SHARED\textunderscore PHOTO.Photo\textunderscore Code \leftarrow  PHOTO.Photo\textunderscore Code\\
+SHARED\textunderscore PHOTO.Collection\textunderscore Name \leftarrow PUBLIC\textunderscore COLLECTION.Collection\textunderscore Name \\
+
+\pagebreak
+\section{Funzioni, Procedure e Trigger Functions}
+
+\vspace{2em}
+
+\subsection{Funzioni e Procedure}
+
+\vspace{2em}
+
+\textbf{rendi\textunderscore foto\textunderscore privata}
+\break
+Procedure che aggiorna la visibilità di una foto a 'Private'.
+\break
+
+\textbf{rendi\textunderscore foto\textunderscore pubblica}
+\break
+Procedure che aggiorna la visibilità di una foto a 'Public'.
+\break
+
+\textbf{elimina\textunderscore foto}
+\break
+Procedure che permette l'eliminazione di una foto.
+\break
+
+\textbf{galleriapersonale()}
+\break
+Funzione che permette all'utente di visualizzare le proprie foto.
+\break
+
+\textbf{galleriapersonalevideo()}
+\break
+Funzione che permette all'utente di visualizzare i propri video.
+\break
+
+\textbf{foto\textunderscore stesso\textunderscore soggetto()}
+\break
+Funzione che permette di visualizzare tutte le foto che hanno in comune lo stesso soggetto.
+\break
+
+\textbf{foto\textunderscore stesso\textunderscore luogo()}
+\break
+Funzione che recupera tutte le foto che condividono lo stesso luogo.
+\break
+
+\textbf{top\textunderscore 3\textunderscore luoghi()}
+\break
+Funzione che permette di visualizzare le 3 località più immortalate.
+\break
+
+\textbf{video\textunderscore foto()}
+\break
+Funzione che permette di visualizzare tutte le singole foto che compongono un determinato video.
+\break
+
+\pagebreak
+
+\subsection{Trigger Functions}
+
+\vspace{2em}
+\textbf{Delete\textunderscore Photo()}
+\break
+Trigger function che imposta lo scope a 'Eliminated' delle fotografie che sono rimosse dal database.
+\break
+
+\textbf{Delete\textunderscore User()}
+\break
+Trigger function che gestisce i dati di un utente eliminato dal database.
+\break
+
+\textbf{Location\textunderscore Count()}
+\break
+Trigger function che viene attivata ad ogni inserimento di una nuova foto incrementando il counter della location associata.
+\break
+
+\textbf{Location\textunderscore Count\textunderscore Subtract()}
+\break
+Trigger function che viene attivata ad ogni rimozione di una foto diminuendo il counter della location associata.
+\break
+
+\textbf{NewUser\textunderscore Collection()}
+\break
+Trigger function che viene attivata nel momento in cui viene inserita una foto in una galleria condivisa aggiungendo l'utente tra la lista dei partecipanti se non vi è presente.
+\break
+
+\textbf{Private\textunderscore Photo()}
+\break
+Trigger function che viene attivata a seguito di una modifica di una foto rendendo lo scope 'Private' ed eliminando la foto dalle gallerie condivise.
+\break
+
+\textbf{Public\textunderscore Photo()}
+\break
+Trigger function che viene attivata a seguito della condivisione di una foto modificando lo scope da 'Private' a 'Public'.
+\break
+
+
+
